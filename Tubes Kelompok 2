@@ -1,1 +1,47 @@
+import tkinter as tk
+from tkinter import messagebox
 
+# Root window
+root = tk.Tk()
+root.title("Kuis Interaktif")
+root.geometry("500x400")
+root.configure(bg="#f0f0f0")
+
+# Data penyimpanan
+users = {"admin": "password123"}  # Sistem login (username dan password)
+soal = [
+    {"pertanyaan": "Apa ibu kota Indonesia?", "pilihan": ["Jakarta", "Surabaya", "Bandung"], "jawaban": "Jakarta"}
+]
+skor = 0
+
+# Frame setup
+frames = {}
+def create_frame(name):
+    frame = tk.Frame(root, bg="#f9f9f9", padx=10, pady=10)
+    frames[name] = frame
+    return frame
+
+login_frame = create_frame("login")
+menu_frame = create_frame("menu")
+tambah_soal_frame = create_frame("tambah_soal")
+kuis_frame = create_frame("kuis")
+skor_frame = create_frame("skor")
+
+# Variabel untuk pilihan jawaban
+var_pilihan = tk.StringVar()
+
+# Fungsi umum
+
+def switch_frame(current, next):
+    frames[current].pack_forget()
+    frames[next].pack()
+
+# Login Function
+def login():
+    username = username_entry.get()
+    password = password_entry.get()
+    if username in users and users[username] == password:
+        messagebox.showinfo("Login", "Login berhasil!")
+        switch_frame("login", "menu")
+    else:
+        messagebox.showerror("Login", "Username atau password salah!")
