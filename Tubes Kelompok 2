@@ -91,3 +91,36 @@ def tampilkan_soal(index):
     else:
         switch_frame("kuis", "skor")
         skor_label.config(text=f"Skor Anda: {skor}/{len(soal)}")
+# Cek jawaban user
+def cek_jawaban(index):
+    global skor
+    jawaban_user = var_pilihan.get()
+    if jawaban_user == soal[index]["jawaban"]:
+        skor += 1
+    tampilkan_soal(index + 1)
+
+# Frame Login
+username_label = tk.Label(login_frame, text="Username:", bg="#f9f9f9")
+username_label.pack()
+username_entry = tk.Entry(login_frame)
+username_entry.pack()
+
+password_label = tk.Label(login_frame, text="Password:", bg="#f9f9f9")
+password_label.pack()
+password_entry = tk.Entry(login_frame, show="*")
+password_entry.pack()
+
+login_button = tk.Button(login_frame, text="Login", command=login, bg="#4caf50", fg="white")
+login_button.pack(pady=10)
+
+# Frame Menu Utama
+menu_label = tk.Label(menu_frame, text="Menu Utama", bg="#f9f9f9", font=("Arial", 16))
+menu_label.pack()
+
+mulai_kuis_button = tk.Button(menu_frame, text="Mulai Kuis", command=mulai_kuis, bg="#2196f3", fg="white")
+mulai_kuis_button.pack(pady=5)
+
+tambah_soal_button = tk.Button(menu_frame, text="Tambah Soal", command=lambda: switch_frame("menu", "tambah_soal"), bg="#ff9800", fg="white")
+tambah_soal_button.pack(pady=5)
+
+
