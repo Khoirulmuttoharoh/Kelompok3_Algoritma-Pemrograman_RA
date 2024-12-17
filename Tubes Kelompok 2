@@ -31,7 +31,6 @@ skor_frame = create_frame("skor")
 var_pilihan = tk.StringVar()
 
 # Fungsi umum
-
 def switch_frame(current, next):
     frames[current].pack_forget()
     frames[next].pack()
