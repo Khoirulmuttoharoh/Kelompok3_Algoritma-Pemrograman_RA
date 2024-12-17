@@ -45,3 +45,49 @@ def login():
         switch_frame("login", "menu")
     else:
         messagebox.showerror("Login", "Username atau password salah!")
+
+# Tambah soal functions
+def tambah_soal():
+    pertanyaan = pertanyaan_entry.get()
+    pilihan_a = pilihan_a_entry.get()
+    pilihan_b = pilihan_b_entry.get()
+    pilihan_c = pilihan_c_entry.get()
+    jawaban = jawaban_entry.get()
+
+    if not all([pertanyaan, pilihan_a, pilihan_b, pilihan_c, jawaban]):
+        messagebox.showerror("Error", "Semua kolom harus diisi!")
+        return
+
+    soal.append({
+        "pertanyaan": pertanyaan,
+        "pilihan": [pilihan_a, pilihan_b, pilihan_c],
+        "jawaban": jawaban
+    })
+    messagebox.showinfo("Tambah Soal", "Soal berhasil ditambahkan!")
+    reset_form()
+
+# Reset form tambah soal
+def reset_form():
+    pertanyaan_entry.delete(0, tk.END)
+    pilihan_a_entry.delete(0, tk.END)
+    pilihan_b_entry.delete(0, tk.END)
+    pilihan_c_entry.delete(0, tk.END)
+    jawaban_entry.delete(0, tk.END)
+
+# Mulai kuis
+def mulai_kuis():
+    switch_frame("menu", "kuis")
+    tampilkan_soal(0)
+
+# Tampilkan soal secara rekursif
+def tampilkan_soal(index):
+    global skor
+    if index < len(soal):
+        pertanyaan_label.config(text=f"Soal {index + 1}: {soal[index]['pertanyaan']}")
+        var_pilihan.set(None)
+        for i, pilihan in enumerate(soal[index]["pilihan"]):
+            radio_buttons[i].config(text=pilihan, value=pilihan)
+        lanjut_button.config(command=lambda: cek_jawaban(index))
+    else:
+        switch_frame("kuis", "skor")
+        skor_label.config(text=f"Skor Anda: {skor}/{len(soal)}")
