@@ -123,4 +123,56 @@ mulai_kuis_button.pack(pady=5)
 tambah_soal_button = tk.Button(menu_frame, text="Tambah Soal", command=lambda: switch_frame("menu", "tambah_soal"), bg="#ff9800", fg="white")
 tambah_soal_button.pack(pady=5)
 
+# Frame Tambah Soal
+pertanyaan_label = tk.Label(tambah_soal_frame, text="Pertanyaan:", bg="#f9f9f9")
+pertanyaan_label.pack()
+pertanyaan_entry = tk.Entry(tambah_soal_frame)
+pertanyaan_entry.pack()
 
+pilihan_a_label = tk.Label(tambah_soal_frame, text="Pilihan A:", bg="#f9f9f9")
+pilihan_a_label.pack()
+pilihan_a_entry = tk.Entry(tambah_soal_frame)
+pilihan_a_entry.pack()
+
+pilihan_b_label = tk.Label(tambah_soal_frame, text="Pilihan B:", bg="#f9f9f9")
+pilihan_b_label.pack()
+pilihan_b_entry = tk.Entry(tambah_soal_frame)
+pilihan_b_entry.pack()
+
+pilihan_c_label = tk.Label(tambah_soal_frame, text="Pilihan C:", bg="#f9f9f9")
+pilihan_c_label.pack()
+pilihan_c_entry = tk.Entry(tambah_soal_frame)
+pilihan_c_entry.pack()
+
+jawaban_label = tk.Label(tambah_soal_frame, text="Jawaban Benar:", bg="#f9f9f9")
+jawaban_label.pack()
+jawaban_entry = tk.Entry(tambah_soal_frame)
+jawaban_entry.pack()
+
+simpan_soal_button = tk.Button(tambah_soal_frame, text="Simpan Soal", command=tambah_soal, bg="#4caf50", fg="white")
+simpan_soal_button.pack(pady=5)
+
+kembali_button = tk.Button(tambah_soal_frame, text="Kembali", command=lambda: switch_frame("tambah_soal", "menu"), bg="#f44336", fg="white")
+kembali_button.pack()
+
+# Frame Kuis
+pertanyaan_label = tk.Label(kuis_frame, text="", bg="#f9f9f9", font=("Arial", 12))
+pertanyaan_label.pack(pady=10)
+
+radio_buttons = [tk.Radiobutton(kuis_frame, text="", variable=var_pilihan, value="", bg="#f9f9f9") for _ in range(3)]
+for rb in radio_buttons:
+    rb.pack(anchor="w")
+
+lanjut_button = tk.Button(kuis_frame, text="Lanjut", bg="#4caf50", fg="white")
+lanjut_button.pack(pady=10)
+
+# Frame Skor Akhir
+skor_label = tk.Label(skor_frame, text="", bg="#f9f9f9", font=("Arial", 14))
+skor_label.pack(pady=20)
+
+kembali_menu_button = tk.Button(skor_frame, text="Kembali ke Menu", command=lambda: switch_frame("skor", "menu"), bg="#2196f3", fg="white")
+kembali_menu_button.pack()
+
+# Jalankan aplikasi Tkinter
+login_frame.pack()
+root.mainloop()
